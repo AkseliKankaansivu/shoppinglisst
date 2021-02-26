@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="316.0" prefWidth="273.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="fxShoppingList.ShoppingListGUIController">
+   <bottom>
+      <GridPane prefHeight="199.0" prefWidth="274.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="109.39996337890625" minWidth="10.0" prefWidth="63.200048828125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.20001220703125" minWidth="10.0" prefWidth="167.199951171875" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Nimi">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <Label text="Puhelinnumero" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="3.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Osoite" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField prefWidth="162.0" GridPane.columnIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField prefWidth="189.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="50.0" text="Ok" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="115.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Poistu" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+   </bottom>
+   <top>
+      <Label text="Shopping List" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </BorderPane.margin>
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <GridPane prefHeight="54.0" prefWidth="274.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="51.0" prefWidth="227.0" text="                          Akseli Kankaansivu" textAlignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Label>
+            <Label prefHeight="18.0" prefWidth="166.0" text="                                       0.1" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

@@ -63,7 +63,7 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     
     @FXML
     private void handleOK() {
-        
+        //
     }
     /**
     @FXML private void handleHakuehto() {

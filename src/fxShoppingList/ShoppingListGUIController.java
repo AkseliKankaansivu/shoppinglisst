@@ -3,6 +3,7 @@ package fxShoppingList;
 import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import shoppinglist.ShoppingList;
 
 /**
  * @author aksel
@@ -24,6 +25,22 @@ public class ShoppingListGUIController {
         ModalController.showModal(ShoppingListGUIController.class.getResource("ohjelma.fxml"), "ShoppingList", null, "");
 
     }
+    
+    //====================================================================================//
+    private ShoppingList shoppinglist;
+
+    /**
+     * Asetetaan käytettävä shoppinglist
+     * @param shoppinglist jota käytetään
+     */
+    public void setShoppingList(ShoppingList shoppinglist) {
+        this.shoppinglist = shoppinglist;
+        
+    }
+    
+    
+    
+
     
      
 }

@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
+import shoppinglist.ShoppingList;
 
 
 /**
@@ -18,11 +19,15 @@ public class ShoppingListMain extends Application {
         try {
             FXMLLoader ldr = new FXMLLoader(getClass().getResource("ShoppingListGUIView.fxml"));
             final Pane root = ldr.load();
-            //final ShoppingListGUIController shoppinglistCtrl = (ShoppingListGUIController) ldr.getController();
+            final ShoppingListGUIController shoppinglistCtrl = (ShoppingListGUIController) ldr.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("shoppinglist.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("ShoppingList");
+            
+            ShoppingList shoppinglist = new ShoppingList();
+            shoppinglistCtrl.setShoppingList(shoppinglist);
+            
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
@@ -30,7 +35,7 @@ public class ShoppingListMain extends Application {
     }
 
     /**
-     * @param args Ei käytössä
+     * @param args Ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         launch(args);

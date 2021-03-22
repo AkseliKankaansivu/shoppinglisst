@@ -27,16 +27,8 @@ public class ShoppingListGUIController {
     }
     
     //====================================================================================//
-    private ShoppingList shoppinglist;
-
-    /**
-     * Asetetaan käytettävä shoppinglist
-     * @param shoppinglist jota käytetään
-     */
-    public void setShoppingList(ShoppingList shoppinglist) {
-        this.shoppinglist = shoppinglist;
-        
-    }
+    
+    
     
     
     

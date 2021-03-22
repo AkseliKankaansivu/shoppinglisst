@@ -17,9 +17,9 @@ public class ShoppingListMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader ldr = new FXMLLoader(getClass().getResource("ShoppingListGUIView.fxml"));
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource("ohjelma.fxml"));
             final Pane root = ldr.load();
-            final ShoppingListGUIController shoppinglistCtrl = (ShoppingListGUIController) ldr.getController();
+            final OhjelmaController shoppinglistCtrl = (OhjelmaController) ldr.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("shoppinglist.css").toExternalForm());
             primaryStage.setScene(scene);
@@ -29,10 +29,12 @@ public class ShoppingListMain extends Application {
             shoppinglistCtrl.setShoppingList(shoppinglist);
             
             primaryStage.show();
+           
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * @param args Ei k�yt�ss�

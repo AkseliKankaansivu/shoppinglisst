@@ -136,7 +136,7 @@
             </GridPane>
          </bottom>
          <right>
-            <ListChooser prefHeight="158.0" prefWidth="238.0" rivit="K-Citymarket&#10;Prisma&#10;S-Market&#10;Tokmanni&#10;K-Market&#10;Lidl&#10;K-Supermarket&#10;Halpahalli&#10;Ruokakeidas&#10;Sale&#10;" BorderPane.alignment="CENTER" />
+            <ListChooser fx:id="chooserLiikkeet" editable="true" prefHeight="158.0" prefWidth="238.0" rivit="" BorderPane.alignment="CENTER" />
          </right>
       </BorderPane>
    </left>

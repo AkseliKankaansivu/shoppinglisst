@@ -12,7 +12,7 @@ import javafx.fxml.FXML;
 public class ShoppingListGUIController {
     
    /**
-    * Aloitus näytön controllit
+    * Aloitusnäytön controllit
     */
     @FXML
     private void handlePoistu() {
@@ -24,6 +24,14 @@ public class ShoppingListGUIController {
         ModalController.showModal(ShoppingListGUIController.class.getResource("ohjelma.fxml"), "ShoppingList", null, "");
 
     }
+    
+    //====================================================================================//
+    
+    
+    
+    
+    
+
     
      
 }

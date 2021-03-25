@@ -13,7 +13,7 @@ import shoppinglist.ShoppingList;
 public class ShoppingListGUIController {
     
    /**
-    * Aloitus näytön controllit
+    * Aloitusnäytön controllit
     */
     @FXML
     private void handlePoistu() {

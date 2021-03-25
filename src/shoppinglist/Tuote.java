@@ -12,9 +12,19 @@ import java.io.PrintStream;
  *
  */
 public class Tuote {
+<<<<<<< HEAD
     private int tunnusNro;
     private String nimi = "";
     private String tyyppi = "";
+=======
+    private int liikeID;
+    private int tunnusNro;
+    private String nimi = "";
+    private String tyyppi = "";
+    private String maara = "";
+    private double hinta = 0.0;
+    private String shinta = "";
+>>>>>>> tyo5
     private static int seuraavaNro = 1;
 
     
@@ -26,6 +36,38 @@ public class Tuote {
     }
     
     /**
+<<<<<<< HEAD
+=======
+     * @return liikkeen, johon kuuluu ID:n
+     */
+    public int getLiikeID() {
+        return liikeID;
+    }
+    
+    
+    /**
+     * @return palauttaan tuotteen hinnan
+     */
+    public String getHinta() {
+        return shinta;
+    }
+    
+    /**
+     * @return palauttaa tuotteen määrän
+     */
+    public String getMaara() {
+        return maara;
+    }
+    
+    /**
+     * @return tuotteen tyyppi
+     */
+    public String getTyyppi() {
+        return this.tyyppi;
+    }
+    
+    /**
+>>>>>>> tyo5
      * @return tuotteen nimen
      */
     public String getNimi() {
@@ -48,6 +90,12 @@ public class Tuote {
     public void tayta() {
         this.nimi = "Tuote" + " " +  this.tunnusNro;
         this.tyyppi = "Testityyppi" + " " + this.tunnusNro;
+<<<<<<< HEAD
+=======
+        this.maara = "Testimäärä";
+        this.hinta = 0.0;
+        this.shinta = hinta + "€";
+>>>>>>> tyo5
     }
     /**
      * @param args ei käytössä
@@ -85,4 +133,16 @@ public class Tuote {
         out.println("Nimi: " + nimi + ", Tyyppi: " + tyyppi + ",  Tunnusnumero: " + tunnusNro);
     }
 
+<<<<<<< HEAD
+=======
+
+    /**
+     * @param liikenro liike, johon tuote on lisätty
+     */
+    public void vieTiedot(int liikenro) {
+        this.liikeID = liikenro;
+        
+    }
+
+>>>>>>> tyo5
 }

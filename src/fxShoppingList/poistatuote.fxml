@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="144.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="391.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxShoppingList.PoistaController">
    <top>
       <Label text="Poista tuote" BorderPane.alignment="CENTER">
          <font>
@@ -19,7 +19,7 @@
       </Label>
    </top>
    <center>
-      <ListChooser prefHeight="265.0" prefWidth="391.0" rivit="Maito&#10;Leipä&#10;Jauheliha&#10;Oivariini&#10;" BorderPane.alignment="CENTER" />
+      <ListChooser fx:id="listChooserPoista" prefHeight="145.0" prefWidth="391.0" rivit="Maito&#10;Leipä&#10;Jauheliha&#10;Oivariini&#10;" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
       <GridPane BorderPane.alignment="CENTER">
@@ -31,12 +31,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Peruuta">
+            <Button mnemonicParsing="false" onAction="#handlePeruuta" text="Peruuta">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Poista tuote" GridPane.columnIndex="1">
+            <Button mnemonicParsing="false" onAction="#handlePoista" text="Poista tuote" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" />
                </GridPane.margin>

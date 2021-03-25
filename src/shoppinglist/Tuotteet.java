@@ -7,7 +7,11 @@ package shoppinglist;
  * etsii ja lajittelee
  */
 public class Tuotteet {
+<<<<<<< HEAD
     private static final int MAX_TUOTTEET = 10;
+=======
+    private static final int MAX_TUOTTEET = 12;
+>>>>>>> tyo5
     private int lkm = 0;
     private Tuote[] alkiot = new Tuote[MAX_TUOTTEET];
     
@@ -56,6 +60,10 @@ public class Tuotteet {
        try {
         tuotteet.lisaa(tuote1);
         tuotteet.lisaa(tuote2);
+<<<<<<< HEAD
+=======
+       
+>>>>>>> tyo5
     } catch (SailoException e) {
         System.err.println(e.getMessage());
     }

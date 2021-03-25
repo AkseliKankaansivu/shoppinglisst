@@ -33,6 +33,7 @@ public class Liike {
     }
     
     /**
+<<<<<<< HEAD
      * Hakee Citymarketin tiedot
      */
     public void taytaCitymarket() {
@@ -53,6 +54,16 @@ public class Liike {
         this.nimi = "Sale";
     }
     /**
+=======
+     * Hakee Liikkeen tiedot
+     * @param liikenimi liikkeen nimi 
+     */
+    public void tayta(String liikenimi) {
+        this.nimi = liikenimi;
+    }
+    
+    /**
+>>>>>>> tyo5
      * @example
     * <pre name="test">
     * Liike sale = new Liike();
@@ -102,6 +113,7 @@ public class Liike {
         Prisma.rekisteroi();
         Sale.rekisteroi();
         
+<<<<<<< HEAD
         Citymarket.taytaCitymarket();
         Citymarket.tulosta(System.out);
         
@@ -109,6 +121,15 @@ public class Liike {
         Prisma.tulosta(System.out);
         
         Sale.taytaSale();
+=======
+        Citymarket.tayta("Citymarket");
+        Citymarket.tulosta(System.out);
+        
+        Prisma.tayta("Prisma");
+        Prisma.tulosta(System.out);
+        
+        Sale.tayta("Sale");
+>>>>>>> tyo5
         Sale.tulosta(System.out);
         
     }

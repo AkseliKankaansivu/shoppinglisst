@@ -4,7 +4,9 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**
- * 
+ * Tietää ostoksen tiedot, osaa muuttaa käyttäjän syöttämät merkkijonot, tarkistaa ostoksen syntaksin, tietää liikkeen ID:n,
+ * tietää tuotteen ID:n
+ * EI KÄYTETÄ   
  * @author aksel
  * @version 22.3.2021
  *

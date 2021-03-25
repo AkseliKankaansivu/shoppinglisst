@@ -1,9 +1,10 @@
 package shoppinglist;
 
 /**
+ * Lukee ja kirjoittaa ostokset, osaa etsiä ja lajitella, lisää ja poistaa ostoksia
  * @author aksel
  * @version 22.3.2021
- *
+ * EI KÄYTÖSSÄ
  */
 public class Ostokset {
     private static final int MAX_OSTOKSET = 10;

@@ -2,7 +2,6 @@ package fxShoppingList;
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
-import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
@@ -13,7 +12,6 @@ import shoppinglist.ShoppingList;
 import shoppinglist.Tuote;
 import shoppinglist.SailoException;
 import shoppinglist.Liike;
-import shoppinglist.Ostos;
 /**
  * @author aksel
  * @version 17.2.2021
@@ -50,12 +48,13 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     @FXML
     private void handleLisaaTuote() {
         //ModalController.showModal(OhjelmaController.class.getResource("tuotteenlisays.fxml"), "Lisäys", null, "");
-        uusiOstos();
+        uusiTuote();
     }
     
     @FXML
     private void handlePoistatuote() {
-        ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
+        //ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
+       stringGrid.getObject();
     }
     
     @FXML
@@ -97,14 +96,13 @@ private ShoppingList shoppinglist;
         
     }
     
-    private void uusiOstos() {
-        Ostos ostos = new Ostos();
-        ostos.rekisteroi();
-        ostos.tayta();
+    private void uusiTuote() {
         Tuote tuote = new Tuote();
         tuote.rekisteroi();
         tuote.tayta();
-        ostos.vieTiedot(tuote);
+        Liike temp = chooserLiikkeet.getSelectedObject();
+        tuote.vieTiedot(temp.getTunnusNro());
+        
         try {
             shoppinglist.lisaa(tuote);
         } catch (SailoException e) {
@@ -124,7 +122,7 @@ private ShoppingList shoppinglist;
         for (int i =0; i < shoppinglist.getTuotteet(); i++) {
             Tuote tuote = shoppinglist.annaTuote(i);
             if (tuote.getTunnusNro() == jnro) index = i;
-            stringGrid.add(tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());    
+            stringGrid.add(tuote,tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());    
             
         }
         stringGrid.getSelectionModel().select(index);

@@ -12,6 +12,7 @@ import java.io.PrintStream;
  *
  */
 public class Tuote {
+    private int liikeID;
     private int tunnusNro;
     private String nimi = "";
     private String tyyppi = "";
@@ -27,6 +28,14 @@ public class Tuote {
     public int getTunnusNro() {
         return tunnusNro;
     }
+    
+    /**
+     * @return liikkeen, johon kuuluu ID:n
+     */
+    public int getLiikeID() {
+        return liikeID;
+    }
+    
     
     /**
      * @return palauttaan tuotteen hinnan
@@ -110,6 +119,15 @@ public class Tuote {
      */
     public void tulosta(PrintStream out) {
         out.println("Nimi: " + nimi + ", Tyyppi: " + tyyppi + ",  Tunnusnumero: " + tunnusNro);
+    }
+
+
+    /**
+     * @param liikenro liike, johon tuote on lisätty
+     */
+    public void vieTiedot(int liikenro) {
+        this.liikeID = liikenro;
+        
     }
 
 }

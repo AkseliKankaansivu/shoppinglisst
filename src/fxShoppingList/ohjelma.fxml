@@ -141,6 +141,6 @@
       </BorderPane>
    </left>
    <right>
-      <StringGrid fx:id="stringGrid" editable="true" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
+      <StringGrid fx:id="stringGrid" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

@@ -49,9 +49,9 @@ public class Tuotteet {
        Tuote tuote2 = new Tuote();
        
        tuote1.rekisteroi();
-       tuote1.tayta();
+       //tuote1.tayta();
        tuote2.rekisteroi();
-       tuote2.tayta();
+       //tuote2.tayta();
        
        try {
         tuotteet.lisaa(tuote1);

@@ -8,7 +8,6 @@ package shoppinglist;
 public class ShoppingList {
     private Liikkeet liikkeet = new Liikkeet();
     private Tuotteet tuotteet = new Tuotteet();
-    private Ostokset ostokset = new Ostokset();
     
     /**
      * lisätään uusi liike
@@ -28,13 +27,6 @@ public class ShoppingList {
         tuotteet.lisaa(tuote);
     }
     
-    /**
-     * @param ostos lisättävä ostos
-     * @throws SailoException poikkeus vuotaa ulos
-     */
-    public void lisaa(Ostos ostos) throws SailoException {
-        ostokset.lisaa(ostos);
-    }
     
     /**
      * @return shoppinglistin liikkeiden lukumäärä
@@ -66,20 +58,6 @@ public class ShoppingList {
         return this.tuotteet.anna(i);
     }
     
-    /**
-     * @param i indekis josta haetaan
-     * @return ostoksen viite i:n kohdassa
-     */
-    public Ostos annaOstos(int i) {
-        return this.ostokset.anna(i);
-    }
-    
-    /**
-     * @return ostoksen määrän
-     */
-    public int getOstokset() {
-        return this.ostokset.getLkm();
-    }
     
     /**
      * @param args ei käytössä
@@ -114,7 +92,7 @@ public class ShoppingList {
         // muodostetaan tuotteet
         Tuote tuote1 = new Tuote();
         tuote1.rekisteroi();
-        tuote1.tayta();
+        //tuote1.tayta();
         
         try {
             shoppinglist.lisaa(tuote1);
@@ -128,15 +106,6 @@ public class ShoppingList {
             tuote.tulosta(System.out);
         }
         
-        // muodostetaan ostokset
-        Ostos ostos1 = new Ostos();
-        ostos1.rekisteroi();
-        ostos1.tayta();
-        try {
-            shoppinglist.lisaa(ostos1);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
         
         
     }

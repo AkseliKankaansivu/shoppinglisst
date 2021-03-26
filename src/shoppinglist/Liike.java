@@ -6,7 +6,7 @@ import java.io.PrintStream;
 /**
  * @author aksel
  * @version 4.3.2021
- * Sisältää liikkeiden nimet ja ID numeron, tarkistaa syntaksin 
+ * Sisältää liikkeiden nimet ja ID numeron 
  * 
  */
 public class Liike {

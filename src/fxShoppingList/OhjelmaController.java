@@ -85,6 +85,7 @@ public class OhjelmaController implements ModalControllerInterface<String> {
    //========================================================================================//
     
 private ShoppingList shoppinglist;
+
     
     /**
      * Asetetaan käytettävä shoppinglist
@@ -93,9 +94,17 @@ private ShoppingList shoppinglist;
     public void setShoppingList(ShoppingList shoppinglist) {
         this.shoppinglist = shoppinglist;
         alustaLiikkeet();
+        chooserLiikkeet.addSelectionListener(e -> naytaLista());
         
     }
     
+    /**
+     * vaihtaa stringgrid listaa
+     */
+    private void naytaLista() {
+        stringGrid.clear();  
+    }
+
     private void uusiTuote() {
         Tuote tuote = new Tuote();
         tuote.rekisteroi();
@@ -122,8 +131,7 @@ private ShoppingList shoppinglist;
         for (int i =0; i < shoppinglist.getTuotteet(); i++) {
             Tuote tuote = shoppinglist.annaTuote(i);
             if (tuote.getTunnusNro() == jnro) index = i;
-            stringGrid.add(tuote,tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());    
-            
+            stringGrid.add(tuote,tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());               
         }
         stringGrid.getSelectionModel().select(index);
     }

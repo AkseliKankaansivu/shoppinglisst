@@ -30,7 +30,7 @@ public class Tuote {
     }
     
     /**
-     * @return liikkeen, johon kuuluu ID:n
+     * @return palauttaa liikkeen johon tuote kuuluu
      */
     public int getLiikeID() {
         return liikeID;
@@ -97,11 +97,11 @@ public class Tuote {
        Tuote tuote2 = new Tuote();
        
        tuote1.rekisteroi();
-       tuote1.tayta();
+       //tuote1.tayta();
        tuote1.tulosta(System.out);
     
        tuote2.rekisteroi();
-       tuote2.tayta();
+       //tuote2.tayta();
        tuote2.tulosta(System.out);
     }
 

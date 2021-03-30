@@ -2,6 +2,7 @@ package fxShoppingList;
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
+import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
@@ -53,8 +54,8 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     
     @FXML
     private void handlePoistatuote() {
-        //ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
-       stringGrid.getObject();
+       ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
+       //stringGrid.getObject();
     }
     
     @FXML

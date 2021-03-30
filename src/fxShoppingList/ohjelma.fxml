@@ -34,6 +34,8 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleLisaaTuote" text="Lisää tuote" />
                   <MenuItem mnemonicParsing="false" onAction="#handlePoistatuote" text="Poista tuote..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handeLisaaLiike" text="Lisää liike" />
+                  <MenuItem mnemonicParsing="false" text="Poista liike" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ohje">

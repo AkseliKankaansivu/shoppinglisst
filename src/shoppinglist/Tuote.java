@@ -77,13 +77,15 @@ public class Tuote {
     
     /**
      * antaa tuotteelle tiedot
+     * @param liikenro liikkeen johon tuote lisätään tunnusnro
      */
-    public void tayta() {
+    public void tayta(int liikenro) {
         this.nimi = "Tuote" + " " +  this.tunnusNro;
         this.tyyppi = "Testityyppi" + " " + this.tunnusNro;
         this.maara = "Testimäärä";
         this.hinta = 0.0;
         this.shinta = hinta + "€";
+        this.liikeID = liikenro;
     }
     /**
      * @param args ei käytössä
@@ -97,11 +99,11 @@ public class Tuote {
        Tuote tuote2 = new Tuote();
        
        tuote1.rekisteroi();
-       //tuote1.tayta();
+       tuote1.tayta(1);
        tuote1.tulosta(System.out);
     
        tuote2.rekisteroi();
-       //tuote2.tayta();
+       tuote2.tayta(2);
        tuote2.tulosta(System.out);
     }
 
@@ -118,16 +120,9 @@ public class Tuote {
      * @param out käytetty tietovirta
      */
     public void tulosta(PrintStream out) {
-        out.println("Nimi: " + nimi + ", Tyyppi: " + tyyppi + ",  Tunnusnumero: " + tunnusNro);
+        out.println(nimi + " " + tyyppi + " " + tunnusNro);
     }
 
 
-    /**
-     * @param liikenro liike, johon tuote on lisätty
-     */
-    public void vieTiedot(int liikenro) {
-        this.liikeID = liikenro;
-        
-    }
 
 }

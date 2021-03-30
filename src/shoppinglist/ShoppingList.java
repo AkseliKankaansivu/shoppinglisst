@@ -1,5 +1,7 @@
 package shoppinglist;
 
+import java.util.List;
+
 /**
  * @author aksel
  * @version 4.3.2021
@@ -21,9 +23,8 @@ public class ShoppingList {
     /**
      * lisää uusi tuote
      * @param tuote lisättävä tuote
-     * @throws SailoException annetaan poikkeuksen vuotaa ulos
      */
-    public void lisaa(Tuote tuote) throws SailoException {
+    public void lisaa(Tuote tuote) {
         tuotteet.lisaa(tuote);
     }
     
@@ -43,16 +44,25 @@ public class ShoppingList {
         return this.liikkeet.anna(i);
     }
     
+    
     /**
-     * @return shoppinglistin tuotteiden lukumäärä
+     * @param liike jonka tuotteita haetaan
+     * @return liikkeen tuotteet
+     */
+    public List<Tuote> annaTuotteet(Liike liike) {
+        return tuotteet.annaTuotteet(liike.getTunnusNro());
+    }
+    
+    /**
+     * @return palauttaa tuotteiden lukumäärän
      */
     public int getTuotteet() {
         return this.tuotteet.getLkm();
     }
     
     /**
-     * @param i indeksi josta haetaan
-     * @return tuotteet viite i:n kohdassa
+     * @param i indeksi, josta tuote haetaan
+     * @return tuotteen haetusta indeksistä
      */
     public Tuote annaTuote(int i) {
         return this.tuotteet.anna(i);
@@ -92,21 +102,10 @@ public class ShoppingList {
         // muodostetaan tuotteet
         Tuote tuote1 = new Tuote();
         tuote1.rekisteroi();
-        //tuote1.tayta();
-        
-        try {
-            shoppinglist.lisaa(tuote1);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
-        
-        for (int i=0;i<shoppinglist.getTuotteet();i++) {
-            Tuote tuote = shoppinglist.annaTuote(i);
-            System.out.println("Tuote indeksissä " + i);
-            tuote.tulosta(System.out);
-        }
-        
+        tuote1.tayta(2);
         
         
     }
+
+    
 }

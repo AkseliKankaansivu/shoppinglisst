@@ -1,8 +1,9 @@
 package fxShoppingList;
 
+import java.util.List;
+
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
-import fi.jyu.mit.fxgui.ModalController;
 import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
@@ -54,10 +55,14 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     
     @FXML
     private void handlePoistatuote() {
-       ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
-       //stringGrid.getObject();
+        //ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
+       stringGrid.getObject();
     }
     
+    @FXML
+    private void handeLisaaLiike() {
+        uusiLiike();
+    }
     @FXML
     private void handleTietoja() {
         Dialogs.showMessageDialog("Versio: 0.1 " +  " Tekijä: Akseli Kankaansivu");
@@ -86,7 +91,7 @@ public class OhjelmaController implements ModalControllerInterface<String> {
    //========================================================================================//
     
 private ShoppingList shoppinglist;
-
+private Liike liikeKohdalla;
     
     /**
      * Asetetaan käytettävä shoppinglist
@@ -97,45 +102,62 @@ private ShoppingList shoppinglist;
         alustaLiikkeet();
         chooserLiikkeet.addSelectionListener(e -> naytaLista());
         
+        
     }
     
     /**
      * vaihtaa stringgrid listaa
      */
     private void naytaLista() {
-        stringGrid.clear();  
+        stringGrid.clear(); 
+        liikeKohdalla = chooserLiikkeet.getSelectedObject();
+        if (liikeKohdalla == null) return;
+        nayta(shoppinglist.annaTuotteet(liikeKohdalla));
+         
+    }
+
+   
+    private void nayta(List<Tuote> annaTuotteet) {
+        stringGrid.add(annaTuotteet);
+        stringGrid.getSelectionModel().selectAll();
     }
 
     private void uusiTuote() {
+        if (liikeKohdalla == null) return;
         Tuote tuote = new Tuote();
         tuote.rekisteroi();
-        tuote.tayta();
-        Liike temp = chooserLiikkeet.getSelectedObject();
-        tuote.vieTiedot(temp.getTunnusNro());
-        
-        try {
-            shoppinglist.lisaa(tuote);
-        } catch (SailoException e) {
-            Dialogs.showMessageDialog("Ongelmia liikkeissä" + e.getMessage());
-            return;
-        }
-        haeTuote(tuote.getTunnusNro());
+        tuote.tayta(liikeKohdalla.getTunnusNro());
+        shoppinglist.lisaa(tuote);
+        haeTuote(liikeKohdalla.getTunnusNro());
     }
     
-    /**
-     * hakee tuotteen ja liittää sen käyttöliittymään
-     * @param jnro haettavan tuotteen indeksi
-     */
-    protected void haeTuote(int jnro) {
+    private void haeTuote(int jnro) {
         stringGrid.clear();
         int index = 0;
         for (int i =0; i < shoppinglist.getTuotteet(); i++) {
             Tuote tuote = shoppinglist.annaTuote(i);
             if (tuote.getTunnusNro() == jnro) index = i;
-            stringGrid.add(tuote,tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());               
+            stringGrid.add(tuote,tuote.getNimi(),tuote.getMaara(),tuote.getHinta(),tuote.getTyyppi());    
+         
         }
         stringGrid.getSelectionModel().select(index);
+
     }
+    
+    private void uusiLiike() {
+        Liike liike = new Liike();
+        liike.rekisteroi();
+        liike.tayta("Uusi liike");
+               
+        try {
+            shoppinglist.lisaa(liike);
+        } catch (SailoException e) {
+            Dialogs.showMessageDialog("Ongelmia liikkeissä" + e.getMessage());
+            return;
+        }
+        haeLiike(liike.getTunnusNro());
+    }
+    
     /**
      *  alustaa liikkeet käyttöliittymään
      */

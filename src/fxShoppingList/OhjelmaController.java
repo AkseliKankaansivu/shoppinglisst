@@ -99,6 +99,7 @@ private Liike liikeKohdalla;
      */
     public void setShoppingList(ShoppingList shoppinglist) {
         this.shoppinglist = shoppinglist;
+        liikeKohdalla = chooserLiikkeet.getSelectedObject();
         alustaLiikkeet();
         chooserLiikkeet.addSelectionListener(e -> naytaLista());
         
@@ -118,7 +119,10 @@ private Liike liikeKohdalla;
 
    
     private void nayta(List<Tuote> annaTuotteet) {
-        stringGrid.add(annaTuotteet);
+        for (int i = 0;i<annaTuotteet.size();i++) {
+        Tuote temp = annaTuotteet.get(i);
+        stringGrid.add(temp,temp.getNimi(),temp.getMaara(),temp.getHinta(),temp.getTyyppi());
+        }
         stringGrid.getSelectionModel().selectAll();
     }
 

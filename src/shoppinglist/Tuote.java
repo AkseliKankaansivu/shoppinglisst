@@ -123,6 +123,13 @@ public class Tuote {
         out.println(nimi + " " + tyyppi + " " + tunnusNro);
     }
 
+    public void poistaTuote() {
+        this.nimi = null;
+        this.tyyppi = null;
+        
+        
+    }
+
 
 
 }

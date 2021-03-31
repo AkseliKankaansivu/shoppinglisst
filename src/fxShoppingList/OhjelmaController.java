@@ -56,7 +56,9 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     @FXML
     private void handlePoistatuote() {
         //ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
-       stringGrid.getObject();
+       stringGrid.getObject().poistaTuote();
+       
+       
     }
     
     @FXML
@@ -102,9 +104,8 @@ private Liike liikeKohdalla;
         liikeKohdalla = chooserLiikkeet.getSelectedObject();
         alustaLiikkeet();
         chooserLiikkeet.addSelectionListener(e -> naytaLista());
-        
-        
     }
+    
     
     /**
      * vaihtaa stringgrid listaa
@@ -133,6 +134,9 @@ private Liike liikeKohdalla;
         tuote.tayta(liikeKohdalla.getTunnusNro());
         shoppinglist.lisaa(tuote);
         haeTuote(liikeKohdalla.getTunnusNro());
+        stringGrid.clear(); //tää
+        nayta(shoppinglist.annaTuotteet(liikeKohdalla)); //ja tää
+        
     }
     
     private void haeTuote(int jnro) {

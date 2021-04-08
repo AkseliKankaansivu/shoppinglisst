@@ -34,7 +34,11 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     }
     
     private void tallenna() {
-        Dialogs.showMessageDialog("Tallennettaan, ei toimi vielä");
+        try {
+            shoppinglist.tallenna();
+        } catch (SailoException e) {
+            System.err.println(e.getMessage());
+        }
     }
     
     @FXML
@@ -103,9 +107,16 @@ private Liike liikeKohdalla;
      */
     public void setShoppingList(ShoppingList shoppinglist) {
         this.shoppinglist = shoppinglist;
+        try {
+            shoppinglist.lueTiedostosta();
+        } catch (SailoException e) {
+            System.err.println("Ongelmia tiedoston lukemisessa");
+        }
+        haeLiike(0);
         liikeKohdalla = chooserLiikkeet.getSelectedObject();
-        alustaLiikkeet();
+        //alustaLiikkeet();
         chooserLiikkeet.addSelectionListener(e -> naytaLista());
+        
     }
     
     
@@ -171,7 +182,7 @@ private Liike liikeKohdalla;
     /**
      *  alustaa liikkeet käyttöliittymään
      */
-    public void alustaLiikkeet() {
+   /** public void alustaLiikkeet() {
         Liike Citymarket = new Liike();
         Citymarket.rekisteroi();
         Citymarket.tayta("K-Citymarket");
@@ -214,6 +225,7 @@ private Liike liikeKohdalla;
         }
         haeLiike(Citymarket.getTunnusNro());
     }
+    */
     
     /**
      * hakee liikkeen ja lisää sen käyttöliittymään

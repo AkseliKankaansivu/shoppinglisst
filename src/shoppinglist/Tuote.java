@@ -6,6 +6,8 @@ package shoppinglist;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * @author aksel
  * @version 4.3.2021
@@ -87,6 +89,39 @@ public class Tuote {
         this.shinta = hinta + "€";
         this.liikeID = liikenro;
     }
+    
+    @Override
+    public String toString() {
+        return          this.tunnusNro + "|" +
+                        this.liikeID + "|" +
+                        this.nimi + "|" +
+                        this.tyyppi + "|" +
+                        this.maara + "|" +
+                        this.hinta + "|" + "\r\n";                      
+    }
+    /**
+     * selvittää liikkeen tiedot, pitää huolen, että seuraavaNro on suurempi kuin tuleva tunnusNro
+     * @param rivi rivi mistä luetaan
+     */
+    public void parse(String rivi) {
+        StringBuilder sb = new StringBuilder(rivi);
+        setTunnusNro(Mjonot.erota(sb,'|',tunnusNro));
+        liikeID = Mjonot.erota(sb, '|', liikeID);
+        nimi = Mjonot.erota(sb,'|',nimi); 
+        tyyppi = Mjonot.erota(sb,'|',tyyppi);
+        maara = Mjonot.erota(sb,'|',maara);
+        hinta = Mjonot.erota(sb,'|',hinta);   
+    }
+    
+    /**
+     * asettaa tunnusnumeron ja samalla varmistaa, että 
+     * seuraava numero on aina suurempi
+     * @param nr asetettava tunnusnro
+     */
+    public void setTunnusNro(int nr) {
+        tunnusNro = nr;
+        if (tunnusNro >= seuraavaNro) seuraavaNro = tunnusNro + 1;
+    }
     /**
      * @param args ei käytössä
      * Vastuualueet:
@@ -120,7 +155,7 @@ public class Tuote {
      * @param out käytetty tietovirta
      */
     public void tulosta(PrintStream out) {
-        out.println(nimi + " " + tyyppi + " " + tunnusNro);
+        out.println(nimi + " " + tyyppi + " " + maara + " " + tunnusNro);
     }
 
     

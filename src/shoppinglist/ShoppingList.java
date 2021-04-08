@@ -11,6 +11,41 @@ public class ShoppingList {
     private Liikkeet liikkeet = new Liikkeet();
     private Tuotteet tuotteet = new Tuotteet();
     
+    
+    /**
+     * lukee tuotteet ja liikkeet tiedostosta jos on jo valmiiksi
+     * @throws SailoException jos tiedostoja luetessa tulee virhe
+     */
+    public void lueTiedostosta() throws SailoException {
+        liikkeet = new Liikkeet();
+        tuotteet = new Tuotteet();
+        
+        liikkeet.lueTied("Liikkeet");
+        tuotteet.lueTied("Tuotteet");
+    }
+    
+    /**
+     * Tallennetaan shoppinglistin tiedot tiedostoon
+     * @throws SailoException jos ongelmia tallentamisessa
+     */
+    public void tallenna() throws SailoException {
+        String virhe = "";
+        try {
+            liikkeet.tallenna("Liikkeet");
+        } catch (SailoException e) {
+            virhe += e.getMessage();
+        }
+        
+        try {
+            tuotteet.tallenna("Tuotteet");
+        } catch (SailoException e) {
+            virhe += e.getMessage();
+        }
+        
+        if (!"".equals(virhe)) throw new SailoException(virhe);
+    }
+    
+    
     /**
      * lisätään uusi liike
      * @param liike lisättävä liike
@@ -71,10 +106,12 @@ public class ShoppingList {
     
     /**
      * @param args ei käytössä
+     * @throws SailoException jos vihreitä
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SailoException {
         ShoppingList shoppinglist = new ShoppingList();
         
+        shoppinglist.lueTiedostosta();
         // muodostetaan liikkeet
         Liike Citymarket = new Liike();
         Liike Prisma = new Liike();

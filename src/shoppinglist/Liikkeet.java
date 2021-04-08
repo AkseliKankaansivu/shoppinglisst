@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -84,8 +83,8 @@ public class Liikkeet {
             }
         } catch (FileNotFoundException e) {
             throw new SailoException("Ei saa luettua tiedostoa " + nimi);
-        } catch (IOException e) {
-            throw new SailoException("Ongelmia tiedoston kanssa " + e.getMessage());
+       // } catch (IOException e) {
+       //     throw new SailoException("Ongelmia tiedoston kanssa " + e.getMessage());
         }
     }  
     /**
@@ -99,6 +98,7 @@ public class Liikkeet {
         } catch (SailoException e) {
             System.err.println(e.getMessage());
         }
+        
         
         Liike Citymarket = new Liike();
         Liike Prisma = new Liike();
@@ -114,13 +114,14 @@ public class Liikkeet {
         Sale.tayta("Sale");
         
         try {
-            liikkeet.lisaa(Citymarket);
-            liikkeet.lisaa(Prisma);
-            liikkeet.lisaa(Sale);
+           liikkeet.lisaa(Citymarket);
+           liikkeet.lisaa(Prisma);
+           liikkeet.lisaa(Sale);
          
         } catch (SailoException e) {
             System.err.println(e.getMessage());
         }
+        
         
         
         System.out.println("=======================Liikkeet testi=========================");
@@ -130,13 +131,13 @@ public class Liikkeet {
             System.out.println("Liikkeen indeksi " + i);
             liike.tulosta(System.out);
         }
-        
         try {
             liikkeet.tallenna("Liikkeet");
         } catch (SailoException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+       
         
     }
 

@@ -1,7 +1,13 @@
 package shoppinglist;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author aksel
@@ -46,12 +52,60 @@ public class Tuotteet {
         return loydetyt;
     }
     
+    /**
+     * tallentaa liikkeet tiedostoon
+     * @param tiednimi tiedoston nimi
+     * @throws SailoException virhe, jos tallennus ei onnistu
+     */
+    public void tallenna(String tiednimi) throws SailoException {
+        File ftied = new File(tiednimi + "/tuotteet.dat");
+       try (PrintStream fo = new PrintStream(new FileOutputStream(ftied, false))) {
+           for (int i = 0; i<getLkm(); i++) {
+               Tuote tuote = anna(i);
+               fo.print(tuote.toString());
+           }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedosto " + ftied.getAbsolutePath() + " ei aukea");
+        }
+        
+    }
+    
+    /**
+     * lukee liikkeet tiedostosta
+     * @param hakemisto tiedoston hakemisto
+     * @throws SailoException jos tiedoston luku epäonnistuu
+     */
+    public void lueTied(String hakemisto) throws SailoException {
+        String nimi = hakemisto + "/tuotteet.dat";
+        File ftied = new File(nimi);
+        
+        try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
+            while (fi.hasNext()) {
+                String s = "";
+                s = fi.nextLine();
+                Tuote tuote = new Tuote();
+                tuote.parse(s);
+                lisaa(tuote);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Ei saa luettua tiedostoa " + nimi);
+       // } catch (IOException e) {
+       //     throw new SailoException("Ongelmia tiedoston kanssa " + e.getMessage());
+        }
+    }  
     
    /**
     * @param args ei käytössä
     */
    public static void main(String[] args) {
        Tuotteet tuotteet = new Tuotteet();
+       
+       try {
+           tuotteet.lueTied("Tuotteet");
+       } catch (SailoException e) {
+           System.err.println(e.getMessage());
+       }
+       
        Tuote tuote1 = new Tuote();
        Tuote tuote2 = new Tuote();
        Tuote tuote3 = new Tuote();
@@ -66,10 +120,10 @@ public class Tuotteet {
        tuote4.rekisteroi();
        tuote4.tayta(2);
        
-       tuotteet.lisaa(tuote4);
        tuotteet.lisaa(tuote1);
        tuotteet.lisaa(tuote2);
        tuotteet.lisaa(tuote3);
+       tuotteet.lisaa(tuote4);
      
        
        System.out.println("=======================Liikkeet testi=========================");
@@ -81,5 +135,12 @@ public class Tuotteet {
            tuo.tulosta(System.out);
 
        }
+       try {
+           tuotteet.tallenna("Tuotteet");
+       } catch (SailoException e) {
+           // TODO Auto-generated catch block
+           e.printStackTrace();
+       }
+       
    }
 }

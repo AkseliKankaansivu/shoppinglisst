@@ -3,6 +3,8 @@ package shoppinglist;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * @author aksel
  * @version 4.3.2021
@@ -81,15 +83,27 @@ public class Liike {
     
     @Override
     public String toString() {
-        return " " + this.nimi + " " + this.tunnusNro + " ";
+        return  this.tunnusNro + "|" + this.nimi + "|" + "\r\n";
     }
     
     /**
      * selvittää liikkeen tiedot, pitää huolen, että seuraavaNro on suurempi kuin tuleva tunnusNro
-     * @param rivi josta liikkeen tiedot
+     * @param rivi rivi
      */
     public void parse(String rivi) {
-       
+       StringBuilder sb = new StringBuilder(rivi);
+       setTunnusNro(Mjonot.erota(sb,'|',tunnusNro));
+       nimi = Mjonot.erota(sb,'|',nimi); 
+    }
+    
+    /**
+     * asettaa tunnusnumeron ja samalla varmistaa, että 
+     * seuraava numero on aina suurempi
+     * @param nr asetettava tunnusnro
+     */
+    public void setTunnusNro(int nr) {
+        tunnusNro = nr;
+        if (tunnusNro >= seuraavaNro) seuraavaNro = tunnusNro + 1;
     }
     /**
      * @param args ei käytössä

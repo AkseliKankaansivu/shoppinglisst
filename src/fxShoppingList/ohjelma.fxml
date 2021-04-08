@@ -34,6 +34,8 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleLisaaTuote" text="Lisää tuote" />
                   <MenuItem mnemonicParsing="false" onAction="#handlePoistatuote" text="Poista tuote..." />
+                  <MenuItem mnemonicParsing="false" onAction="#handeLisaaLiike" text="Lisää liike" />
+                  <MenuItem mnemonicParsing="false" text="Poista liike" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Ohje">
@@ -142,7 +144,11 @@
    </left>
    <right>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <StringGrid editable="true" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;Leipä |500g| 2e|Elintarvike&#10;&#10;" BorderPane.alignment="CENTER" />
+=======
+      <StringGrid fx:id="stringGrid" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
+>>>>>>> tyo5
 =======
       <StringGrid fx:id="stringGrid" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
 >>>>>>> tyo5

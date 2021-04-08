@@ -1,5 +1,10 @@
 package shoppinglist;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> tyo5
 /**
  * @author aksel
  * @version 4.3.2021
@@ -8,9 +13,13 @@ package shoppinglist;
 public class ShoppingList {
     private Liikkeet liikkeet = new Liikkeet();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private Tuotteet tuotteet = new Tuotteet();
     private Ostokset ostokset = new Ostokset();
+>>>>>>> tyo5
+=======
+    private Tuotteet tuotteet = new Tuotteet();
 >>>>>>> tyo5
     
     /**
@@ -23,6 +32,7 @@ public class ShoppingList {
     }
     
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
      * lisää uusi tuote
@@ -43,6 +53,17 @@ public class ShoppingList {
     
     /**
 >>>>>>> tyo5
+=======
+     * lisää uusi tuote
+     * @param tuote lisättävä tuote
+     */
+    public void lisaa(Tuote tuote) {
+        tuotteet.lisaa(tuote);
+    }
+    
+    
+    /**
+>>>>>>> tyo5
      * @return shoppinglistin liikkeiden lukumäärä
      */
     public int getLiikkeet() {
@@ -57,6 +78,7 @@ public class ShoppingList {
         return this.liikkeet.anna(i);
     }
     
+<<<<<<< HEAD
     /**
 <<<<<<< HEAD
 =======
@@ -91,11 +113,44 @@ public class ShoppingList {
     
     /**
 >>>>>>> tyo5
+=======
+    
+    /**
+     * @param liike jonka tuotteita haetaan
+     * @return liikkeen tuotteet
+     */
+    public List<Tuote> annaTuotteet(Liike liike) {
+        return tuotteet.annaTuotteet(liike.getTunnusNro());
+    }
+    
+    /**
+     * @return palauttaa tuotteiden lukumäärän
+     */
+    public int getTuotteet() {
+        return this.tuotteet.getLkm();
+    }
+    
+    /**
+     * @param i indeksi, josta tuote haetaan
+     * @return tuotteen haetusta indeksistä
+     */
+    public Tuote annaTuote(int i) {
+        return this.tuotteet.anna(i);
+    }
+    
+    
+    /**
+>>>>>>> tyo5
      * @param args ei käytössä
      */
     public static void main(String[] args) {
         ShoppingList shoppinglist = new ShoppingList();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        
+        // muodostetaan liikkeet
+>>>>>>> tyo5
 =======
         
         // muodostetaan liikkeet
@@ -105,15 +160,21 @@ public class ShoppingList {
         
         Citymarket.rekisteroi();
 <<<<<<< HEAD
+<<<<<<< HEAD
         Citymarket.taytaCitymarket();
         
         Prisma.rekisteroi();
         Prisma.taytaPrisma();
 =======
+=======
+>>>>>>> tyo5
         Citymarket.tayta("Citymarket");
         
         Prisma.rekisteroi();
         Prisma.tayta("Prisma");
+<<<<<<< HEAD
+>>>>>>> tyo5
+=======
 >>>>>>> tyo5
         
         
@@ -130,11 +191,15 @@ public class ShoppingList {
             liike.tulosta(System.out);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> tyo5
         
         // muodostetaan tuotteet
         Tuote tuote1 = new Tuote();
         tuote1.rekisteroi();
+<<<<<<< HEAD
         tuote1.tayta();
         
         try {
@@ -162,4 +227,12 @@ public class ShoppingList {
         
 >>>>>>> tyo5
     }
+=======
+        tuote1.tayta(2);
+        
+        
+    }
+
+    
+>>>>>>> tyo5
 }

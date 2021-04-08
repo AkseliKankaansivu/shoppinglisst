@@ -6,7 +6,11 @@ import java.io.PrintStream;
 /**
  * @author aksel
  * @version 4.3.2021
+<<<<<<< HEAD
  * Sisältää liikkeiden nimet ja ID numeron, tarkistaa syntaksin 
+=======
+ * Sisältää liikkeiden nimet ja ID numeron 
+>>>>>>> tyo5
  * 
  */
 public class Liike {
@@ -34,6 +38,7 @@ public class Liike {
     
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * Hakee Citymarketin tiedot
      */
     public void taytaCitymarket() {
@@ -55,6 +60,8 @@ public class Liike {
     }
     /**
 =======
+=======
+>>>>>>> tyo5
      * Hakee Liikkeen tiedot
      * @param liikenimi liikkeen nimi 
      */
@@ -63,6 +70,9 @@ public class Liike {
     }
     
     /**
+<<<<<<< HEAD
+>>>>>>> tyo5
+=======
 >>>>>>> tyo5
      * @example
     * <pre name="test">
@@ -114,6 +124,7 @@ public class Liike {
         Sale.rekisteroi();
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         Citymarket.taytaCitymarket();
         Citymarket.tulosta(System.out);
         
@@ -122,6 +133,8 @@ public class Liike {
         
         Sale.taytaSale();
 =======
+=======
+>>>>>>> tyo5
         Citymarket.tayta("Citymarket");
         Citymarket.tulosta(System.out);
         
@@ -129,6 +142,9 @@ public class Liike {
         Prisma.tulosta(System.out);
         
         Sale.tayta("Sale");
+<<<<<<< HEAD
+>>>>>>> tyo5
+=======
 >>>>>>> tyo5
         Sale.tulosta(System.out);
         

@@ -48,6 +48,7 @@ public class Liikkeet {
         
         Citymarket.rekisteroi();
 <<<<<<< HEAD
+<<<<<<< HEAD
         Citymarket.taytaCitymarket();
         
         Prisma.rekisteroi();
@@ -55,6 +56,15 @@ public class Liikkeet {
         
         Sale.rekisteroi();
         Sale.taytaSale();
+=======
+        Citymarket.tayta("Citymarket");
+        
+        Prisma.rekisteroi();
+        Prisma.tayta("Prisma");
+        
+        Sale.rekisteroi();
+        Sale.tayta("Sale");
+>>>>>>> tyo5
 =======
         Citymarket.tayta("Citymarket");
         

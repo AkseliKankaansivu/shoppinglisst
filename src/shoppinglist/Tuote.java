@@ -12,14 +12,6 @@ import java.io.PrintStream;
  *
  */
 public class Tuote {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private int tunnusNro;
-    private String nimi = "";
-    private String tyyppi = "";
-=======
-=======
->>>>>>> tyo5
     private int liikeID;
     private int tunnusNro;
     private String nimi = "";
@@ -27,10 +19,6 @@ public class Tuote {
     private String maara = "";
     private double hinta = 0.0;
     private String shinta = "";
-<<<<<<< HEAD
->>>>>>> tyo5
-=======
->>>>>>> tyo5
     private static int seuraavaNro = 1;
 
     
@@ -42,13 +30,7 @@ public class Tuote {
     }
     
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-     * @return liikkeen, johon kuuluu ID:n
-=======
      * @return palauttaa liikkeen johon tuote kuuluu
->>>>>>> tyo5
      */
     public int getLiikeID() {
         return liikeID;
@@ -77,10 +59,6 @@ public class Tuote {
     }
     
     /**
-<<<<<<< HEAD
->>>>>>> tyo5
-=======
->>>>>>> tyo5
      * @return tuotteen nimen
      */
     public String getNimi() {
@@ -99,28 +77,15 @@ public class Tuote {
     
     /**
      * antaa tuotteelle tiedot
-<<<<<<< HEAD
-     */
-    public void tayta() {
-        this.nimi = "Tuote" + " " +  this.tunnusNro;
-        this.tyyppi = "Testityyppi" + " " + this.tunnusNro;
-<<<<<<< HEAD
-=======
-        this.maara = "Testimäärä";
-        this.hinta = 0.0;
-        this.shinta = hinta + "€";
->>>>>>> tyo5
-=======
      * @param liikenro liikkeen johon tuote lisätään tunnusnro
      */
     public void tayta(int liikenro) {
         this.nimi = "Tuote" + " " +  this.tunnusNro;
-        this.tyyppi = "Testityyppi" + " " + this.tunnusNro;
+        this.tyyppi = "Testityyppi";
         this.maara = "Testimäärä";
         this.hinta = 0.0;
         this.shinta = hinta + "€";
         this.liikeID = liikenro;
->>>>>>> tyo5
     }
     /**
      * @param args ei käytössä
@@ -134,19 +99,11 @@ public class Tuote {
        Tuote tuote2 = new Tuote();
        
        tuote1.rekisteroi();
-<<<<<<< HEAD
-       tuote1.tayta();
-       tuote1.tulosta(System.out);
-    
-       tuote2.rekisteroi();
-       tuote2.tayta();
-=======
        tuote1.tayta(1);
        tuote1.tulosta(System.out);
     
        tuote2.rekisteroi();
        tuote2.tayta(2);
->>>>>>> tyo5
        tuote2.tulosta(System.out);
     }
 
@@ -163,34 +120,17 @@ public class Tuote {
      * @param out käytetty tietovirta
      */
     public void tulosta(PrintStream out) {
-<<<<<<< HEAD
-        out.println("Nimi: " + nimi + ", Tyyppi: " + tyyppi + ",  Tunnusnumero: " + tunnusNro);
-    }
-
-<<<<<<< HEAD
-=======
-
-    /**
-     * @param liikenro liike, johon tuote on lisätty
-     */
-    public void vieTiedot(int liikenro) {
-        this.liikeID = liikenro;
-        
-    }
-
->>>>>>> tyo5
-=======
         out.println(nimi + " " + tyyppi + " " + tunnusNro);
     }
 
+    
+    /**
+     * tekee pyydetystä tuotteesta roskan
+     */
     public void poistaTuote() {
-        this.nimi = null;
-        this.tyyppi = null;
-        
-        
+        //this.nimi = null;
     }
 
 
 
->>>>>>> tyo5
 }

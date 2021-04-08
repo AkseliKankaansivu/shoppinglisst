@@ -3,7 +3,6 @@ package fxShoppingList;
 import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import shoppinglist.ShoppingList;
 
 /**
  * @author aksel

@@ -143,14 +143,6 @@
       </BorderPane>
    </left>
    <right>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <StringGrid editable="true" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;Leipä |500g| 2e|Elintarvike&#10;&#10;" BorderPane.alignment="CENTER" />
-=======
       <StringGrid fx:id="stringGrid" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
->>>>>>> tyo5
-=======
-      <StringGrid fx:id="stringGrid" prefHeight="324.0" prefWidth="404.0" rivit="Tuote|Määrä|Hinta|Tyyppi|&#10;&#10;&#10;" BorderPane.alignment="CENTER" />
->>>>>>> tyo5
    </right>
 </BorderPane>

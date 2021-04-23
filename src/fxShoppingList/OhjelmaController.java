@@ -1,5 +1,6 @@
 package fxShoppingList;
 
+import java.util.Collection;
 import java.util.List;
 
 import fi.jyu.mit.fxgui.Dialogs;
@@ -8,7 +9,7 @@ import fi.jyu.mit.fxgui.ModalControllerInterface;
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import shoppinglist.ShoppingList;
 import shoppinglist.Tuote;
@@ -21,8 +22,7 @@ import shoppinglist.Liike;
  */
 public class OhjelmaController implements ModalControllerInterface<String> {
 
-    @FXML private TextField hakuehto;
-    @FXML private ComboBox<String> cbKentat;
+    @FXML private TextField liikehakuehto;
     @FXML private ListChooser<Liike> chooserLiikkeet;
     @FXML private StringGrid<Tuote> stringGrid;
     /**
@@ -70,6 +70,7 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     @FXML
     private void handeLisaaLiike() {
         uusiLiike();
+       
     }
     @FXML
     private void handleTietoja() {
@@ -83,24 +84,19 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     }
     
     @FXML
-    private void handleOK() {
-        //
-    }
-    /**
-    @FXML private void handleHakuehto() {
-        String hakukentta = cbKentat.getSelectionModel().getSelectedItem();
-        String ehto = hakuehto.getText(); 
-        if ( ehto.isEmpty() )
-            naytaVirhe(null);
-        else
-            naytaVirhe("Ei osata vielä hakea " + hakukentta + ": " + ehto);
+    private Label labelVirhe;
+    
+    @FXML private void handleHakuEhto() {
+        if ( liikeKohdalla != null )
+            hae(liikeKohdalla.getTunnusNro()); 
      }
-     **/
+     
    //========================================================================================//
     
 private ShoppingList shoppinglist;
 private Liike liikeKohdalla;
     
+
     /**
      * Asetetaan käytettävä shoppinglist
      * @param shoppinglist jota käytetään
@@ -115,10 +111,43 @@ private Liike liikeKohdalla;
         haeLiike(0);
         liikeKohdalla = chooserLiikkeet.getSelectedObject();
         //alustaLiikkeet();
+        naytaLista();
         chooserLiikkeet.addSelectionListener(e -> naytaLista());
+        
+        
         
     }
     
+       /**
+         * Hakee liikkeiden tiedot listaan
+         * @param jnr jäsenen numero, joka aktivoidaan haun jälkeen
+         */
+        protected void hae(int jnr) {
+            int jnro = jnr;
+            if ( jnro == 0) {
+                Liike kohdalla = liikeKohdalla;
+                if (kohdalla  !=  null) jnro = kohdalla.getTunnusNro(); 
+            }
+
+            String ehto = liikehakuehto.getText(); 
+            if(ehto.indexOf('*')<0) ehto = "*" + ehto + "*";
+            chooserLiikkeet.clear();
+    
+            int index = 0;
+            Collection<Liike> liikkeet;
+            try {
+                liikkeet = shoppinglist.etsi(ehto);
+                int i = 0;
+                for (Liike liike:liikkeet) {
+                    if (liike.getTunnusNro() == jnro) index = i;
+                    chooserLiikkeet.add(liike.getNimi(), liike);
+                    i++;
+                }
+            } catch (SailoException ex) {
+                naytaVirhe("Liikkeen hakemisessa ongelmia! " + ex.getMessage());
+            }
+            chooserLiikkeet.setSelectedIndex(index); // tästä tulee muutosviesti joka näyttää jäsenen
+        }
     
     /**
      * vaihtaa stringgrid listaa
@@ -143,13 +172,14 @@ private Liike liikeKohdalla;
     private void uusiTuote() {
         if (liikeKohdalla == null) return;
         Tuote tuote = new Tuote();
+        tuote = LisaysController.kysyTuote(null, tuote);
+        if (tuote == null) return;
         tuote.rekisteroi();
         tuote.tayta(liikeKohdalla.getTunnusNro());
         shoppinglist.lisaa(tuote);
         haeTuote(liikeKohdalla.getTunnusNro());
         stringGrid.clear(); //tää
-        nayta(shoppinglist.annaTuotteet(liikeKohdalla)); //ja tää
-        
+        nayta(shoppinglist.annaTuotteet(liikeKohdalla)); //ja tää      
     }
     
     private void haeTuote(int jnro) {
@@ -167,8 +197,12 @@ private Liike liikeKohdalla;
     
     private void uusiLiike() {
         Liike liike = new Liike();
+        // ModalController.showModal(OhjelmaController.class.getResource("liikkeenlisays.fxml"), "Lisäys", null, "");
+        liike = LiikkeenLisaysController.kysyLiike(null, liike);
+        // if (liike == null) return;
+        // String nimi = liike.getNimi();
         liike.rekisteroi();
-        liike.tayta("Uusi liike");
+        //liike.tayta(nimi);
                
         try {
             shoppinglist.lisaa(liike);
@@ -241,6 +275,16 @@ private Liike liikeKohdalla;
             chooserLiikkeet.add(liike.getNimi(), liike);
         }
         chooserLiikkeet.getSelectionModel().select(index);
+    }
+    
+    private void naytaVirhe(String virhe) {
+        if ( virhe == null || virhe.isEmpty() ) {
+            labelVirhe.setText("");
+            labelVirhe.getStyleClass().removeAll("virhe");
+            return;
+        }
+        labelVirhe.setText(virhe);
+        labelVirhe.getStyleClass().add("virhe");
     }
     
     @Override

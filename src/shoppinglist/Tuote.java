@@ -19,7 +19,6 @@ public class Tuote {
     private String nimi = "";
     private String tyyppi = "";
     private String maara = "";
-    private double hinta = 0.0;
     private String shinta = "";
     private static int seuraavaNro = 1;
 
@@ -82,11 +81,6 @@ public class Tuote {
      * @param liikenro liikkeen johon tuote lisätään tunnusnro
      */
     public void tayta(int liikenro) {
-        this.nimi = "Tuote" + " " +  this.tunnusNro;
-        this.tyyppi = "Testityyppi";
-        this.maara = "Testimäärä";
-        this.hinta = 0.0;
-        this.shinta = hinta + "€";
         this.liikeID = liikenro;
     }
     
@@ -97,7 +91,7 @@ public class Tuote {
                         this.nimi + "|" +
                         this.tyyppi + "|" +
                         this.maara + "|" +
-                        this.hinta + "|" + "\r\n";                      
+                        this.shinta + "|" + "\r\n";                      
     }
     /**
      * selvittää liikkeen tiedot, pitää huolen, että seuraavaNro on suurempi kuin tuleva tunnusNro
@@ -110,7 +104,7 @@ public class Tuote {
         nimi = Mjonot.erota(sb,'|',nimi); 
         tyyppi = Mjonot.erota(sb,'|',tyyppi);
         maara = Mjonot.erota(sb,'|',maara);
-        hinta = Mjonot.erota(sb,'|',hinta);   
+        shinta = Mjonot.erota(sb,'|',shinta);   
     }
     
     /**
@@ -163,7 +157,40 @@ public class Tuote {
      * tekee pyydetystä tuotteesta roskan
      */
     public void poistaTuote() {
-        //this.nimi = null;
+        this.nimi = null;
+        this.tyyppi = null;
+    }
+
+    /**
+     * setteri tuotteen nimelle
+     * @param nimi tuotteen nimi
+     */
+    public void setNimi(String nimi) {
+        this.nimi = nimi;   
+    }
+
+    /**
+     * setteri tuotteen määrä
+     * @param maara tuotteen määrä
+     */
+    public void setMaara(String maara) {
+        this.maara = maara;
+    }
+
+    /**
+     * setteri tuotteen tyypille
+     * @param tyyppi tuotteen tyyppi
+     */
+    public void setTyyppi(String tyyppi) {
+        this.tyyppi = tyyppi;     
+    }
+
+    /**
+     * setteri tuotteen hinnalle
+     * @param hinta tuotteen hinta
+     */
+    public void setHinta(String hinta) {
+        this.shinta = hinta + "€";
     }
 
 

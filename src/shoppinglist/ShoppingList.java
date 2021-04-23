@@ -1,5 +1,6 @@
 package shoppinglist;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -103,6 +104,14 @@ public class ShoppingList {
         return this.tuotteet.anna(i);
     }
     
+    /**
+     * @param hakuehto hakuehto jolla etsitään
+     * @return palauttaa löydetyt
+     * @throws SailoException virhe 
+     */
+    public Collection<Liike> etsi(String hakuehto) throws SailoException { 
+        return liikkeet.etsi(hakuehto);
+    }
     
     /**
      * @param args ei käytössä

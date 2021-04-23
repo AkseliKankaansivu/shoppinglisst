@@ -127,4 +127,12 @@ public class Liike {
         Sale.tulosta(System.out);
         
     }
+
+    /**
+     * setteri liikkeen nimelle
+     * @param nimi liikkeen nimi
+     */
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
 }

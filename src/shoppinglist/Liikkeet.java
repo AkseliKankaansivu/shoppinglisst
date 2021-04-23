@@ -5,16 +5,22 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import fi.jyu.mit.ohj2.WildChars;
 
 /**
  * @author aksel
  * @version 4.3.2021
  * Lukee ja kiroittaa liikkeet tiedostoon, osaa etsiä ja lajitella 
  */
-public class Liikkeet {
+public class Liikkeet implements Iterable<Liike>{
     
-    private static final int MAX_LIIKKEET = 10;
+    private static int MAX_LIIKKEET = 10;
     private int lkm = 0;
     private Liike[] alkiot = new Liike[MAX_LIIKKEET];
     //private String tiedostonNimi = "";
@@ -23,7 +29,14 @@ public class Liikkeet {
      * @throws SailoException jos tietorakenne on jo täynnä
      */
     public void lisaa(Liike liike) throws SailoException {
-       if (lkm>=alkiot.length) throw new SailoException("Liikaa alkioita taulussa");
+       if (lkm>=alkiot.length) {  //throw new SailoException("Liikaa alkioita taulussa");
+          MAX_LIIKKEET++;
+          Liike[] uusi = new Liike[MAX_LIIKKEET];
+          for (int i=0;i<alkiot.length;i++) {
+              uusi[i]=alkiot[i];
+          }
+          alkiot = uusi;   
+       }
        this.alkiot[this.lkm] = liike;
        lkm++;
     }
@@ -63,6 +76,35 @@ public class Liikkeet {
         }
         
     }
+    /**
+     * Lukee jäsenistön tiedostosta. 
+     * @throws SailoException jos lukeminen epäonnistuu
+     * 
+     * @example
+     * <pre name="test">
+     * #THROWS SailoException 
+     * #import java.io.File;
+     * 
+     *  Liikkeet liikkeet = new Liikkeet();
+     *  Liike liike1 = new Liike(), liike2 = new Liike();
+     *  liike1.tayta("1");
+     *  liike2.tayta("2");
+     *  String hakemisto = "testiliikkeet";
+     *  String tiedNimi = hakemisto+"/nimet";
+     *  File ftied = new File(tiedNimi+".dat");
+     *  File dir = new File(hakemisto);
+     *  dir.mkdir();
+     *  ftied.delete();
+     *  liikkeet.lueTied(tiedNimi); #THROWS SailoException
+     *  liikkeet.lisaa(liike1);
+     *  liikkeet.lisaa(liike2);
+     *  liikkeet.tallenna("Liikkeet");
+     *  liikkeet = new Liikkeet();            // Poistetaan vanhat luomalla uusi
+     *  liikkeet.lueTied("Liikkeet");  // johon ladataan tiedot tiedostosta.
+     *  liikkeet.lisaa(liike1);
+     *  liikkeet.tallenna("Liikkeet");
+     * </pre>
+     */
     
     /**
      * lukee liikkeet tiedostosta
@@ -87,6 +129,7 @@ public class Liikkeet {
        //     throw new SailoException("Ongelmia tiedoston kanssa " + e.getMessage());
         }
     }  
+    
     /**
      * @param args ei käytössä
      */
@@ -138,6 +181,51 @@ public class Liikkeet {
             e.printStackTrace();
         }
        
+        
+    }
+
+    @Override
+    public Iterator<Liike> iterator() {
+        return new LiikkeetIterator();
+    }
+    
+    /**
+     * palauttaa haettavat collectionina
+     * @param hakuehto hakuehto
+     * @return löydetyt
+     */
+    public Collection<Liike> etsi(String hakuehto) {
+        Collection<Liike> loytyneet = new ArrayList<Liike>();
+        for (Liike liike : this) {
+            if (WildChars.onkoSamat(liike.getNimi(), hakuehto))
+            loytyneet.add(liike);
+        }
+        return loytyneet;
+    }
+    /**
+     * @author aksel
+     * @version 23.4.2021
+     * luokka liikkeiden iteroimiseksi
+     */
+    public class LiikkeetIterator implements Iterator<Liike> {
+    private int kohdalla = 0;
+        @Override
+        public boolean hasNext() {
+            return kohdalla < getLkm();
+        }
+
+        /**
+        * Annetaan seuraava jäsen
+        * @return seuraava jäsen
+        * @throws NoSuchElementException jos seuraava alkiota ei enää ole
+        * @see java.util.Iterator#next()
+        */
+       @Override
+       public Liike next() throws NoSuchElementException {
+           if ( !hasNext() ) throw new NoSuchElementException("Ei oo");
+           return anna(kohdalla++);
+       }
+
         
     }
 

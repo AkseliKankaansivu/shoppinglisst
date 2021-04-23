@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxShoppingList.LiikkeenLisaysController">
+<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+ fx:controller="fxShoppingList.LiikkeenLisaysController">
    <children>
       <BorderPane stylesheets="@shoppinglist.css" prefHeight="127.0" prefWidth="200.0">
          <center>

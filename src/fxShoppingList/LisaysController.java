@@ -27,6 +27,7 @@ public class LisaysController implements ModalControllerInterface<Tuote>,Initial
         uusiTuote.setMaara(tuoteMaara.getText());
         uusiTuote.setTyyppi(tuoteTyyppi.getText());
         uusiTuote.setHinta(tuoteHinta.getText());
+        String regex = "\\d+";
         if ( uusiTuote != null && uusiTuote.getNimi().trim().equals("") ) {
             naytaVirhe("Nimi ei voi olla tyhjä!");
             tuoteNimi.getStyleClass().add("virhe");
@@ -42,11 +43,12 @@ public class LisaysController implements ModalControllerInterface<Tuote>,Initial
             tuoteHinta.getStyleClass().add("virhe");
             return; 
         }
-        if (!uusiTuote.getHinta().trim().equals("0123456789")) {
-            naytaVirhe("Hinnan pitää olla numero");
+        if (uusiTuote.getHinta().trim().matches(regex + "." + regex + "€") == false){
+            naytaVirhe("Syötä hinta desimaalilukuna");
             tuoteHinta.getStyleClass().add("virhe");
             return;
         }
+        
         if (uusiTuote != null && uusiTuote.getTyyppi().trim().equals("") ) {
             naytaVirhe("Tyyppi ei voi olla tyhjä!");
             tuoteTyyppi.getStyleClass().add("virhe");

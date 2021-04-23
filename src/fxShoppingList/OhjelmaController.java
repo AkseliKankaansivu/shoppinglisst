@@ -43,7 +43,7 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     
     @FXML
     private void handleLaheta() {
-        Dialogs.showMessageDialog("Ei osata lähettää vielä!");
+        lahetaList();
     }
 
     @FXML 
@@ -59,12 +59,12 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     
     @FXML
     private void handlePoistatuote() {
-        //ModalController.showModal(OhjelmaController.class.getResource("poistatuote.fxml"), "Poista", null, "");
-       stringGrid.getObject().poistaTuote();
-       stringGrid.clear(); //tää
-       nayta(shoppinglist.annaTuotteet(liikeKohdalla)); //ja tää
-       
-       
+        poistaTuote();
+    }
+    
+    @FXML
+    private void handlePoistaLiike() {
+        poistaLiike();
     }
     
     @FXML
@@ -148,6 +148,33 @@ private Liike liikeKohdalla;
             }
             chooserLiikkeet.setSelectedIndex(index); // tästä tulee muutosviesti joka näyttää jäsenen
         }
+        
+        /**
+         * Poistaa listchooserista valitun liikkeen
+         */
+        private void poistaLiike() {
+            Liike liike = liikeKohdalla;
+            if (liike == null) return;
+            if ( !Dialogs.showQuestionDialog("Poisto", "Poistetaanko jäsen: " + liike.getNimi(), "Kyllä", "Ei") )
+                return;
+            shoppinglist.poistaLiike(liike);
+            int index = chooserLiikkeet.getSelectedIndex();
+            haeLiike(0);
+            chooserLiikkeet.setSelectedIndex(index);
+        }
+        
+        /**
+         * Poistaa stringgridistä valitun tuotteen
+         */
+        private void poistaTuote() {
+            Tuote tuote = stringGrid.getObject();
+            if (tuote == null) return;
+            if ( !Dialogs.showQuestionDialog("Poisto", "Poistetaanko tuote: " + tuote.getNimi(), "Kyllä", "Ei") )
+                return;
+            shoppinglist.poistaTuote(tuote);
+            stringGrid.clear(); //tää
+            nayta(shoppinglist.annaTuotteet(liikeKohdalla)); //ja tää  
+        }
     
     /**
      * vaihtaa stringgrid listaa
@@ -199,6 +226,7 @@ private Liike liikeKohdalla;
         Liike liike = new Liike();
         // ModalController.showModal(OhjelmaController.class.getResource("liikkeenlisays.fxml"), "Lisäys", null, "");
         liike = LiikkeenLisaysController.kysyLiike(null, liike);
+        if (liike == null) return;
         // if (liike == null) return;
         // String nimi = liike.getNimi();
         liike.rekisteroi();
@@ -211,6 +239,16 @@ private Liike liikeKohdalla;
             return;
         }
         haeLiike(liike.getTunnusNro());
+    }
+    
+    private void lahetaList() {
+        List<Tuote> lista = shoppinglist.annaTuotteet(chooserLiikkeet.getSelectedObject());
+        Object[] tuotelista = lista.toArray(); 
+        Tuote tuote = new Tuote();
+        String hinta = shoppinglist.tuotteetHinta();
+        String liikeNimi = chooserLiikkeet.getSelectedObject().getNimi();
+        tuote = LahetysController.laheta(null, tuote, tuotelista, liikeNimi, hinta);
+        
     }
     
     /**

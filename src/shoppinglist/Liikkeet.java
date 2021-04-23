@@ -7,7 +7,9 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -195,11 +197,12 @@ public class Liikkeet implements Iterable<Liike>{
      * @return löydetyt
      */
     public Collection<Liike> etsi(String hakuehto) {
-        Collection<Liike> loytyneet = new ArrayList<Liike>();
+        List<Liike> loytyneet = new ArrayList<Liike>();
         for (Liike liike : this) {
             if (WildChars.onkoSamat(liike.getNimi(), hakuehto))
             loytyneet.add(liike);
         }
+        Collections.sort(loytyneet, new Liike.Vertailija());
         return loytyneet;
     }
     /**
@@ -227,6 +230,31 @@ public class Liikkeet implements Iterable<Liike>{
        }
 
         
+    }
+    /**
+     * poistaa valitun liikkeen
+     * @param tunnusNro poistettavan liikkeen tunnusnro
+     * @return 1 jos jotain poistettiin, 0 jos ei löydy
+     */
+    public int poista(int tunnusNro) {
+        int ind = etsiId(tunnusNro);
+        if (ind<0) return 0;
+        lkm--;
+        for (int i = ind;i<lkm;i++)
+            alkiot[i] = alkiot[i+1];
+        alkiot[lkm] = null;
+        return 1;
+    }
+    
+    /**
+     * etsii liikkeen tunnusnumeron avulla
+     * @param tunnusNro etsittävän liikkeen tunnusnro
+     * @return liikkeen indeksi
+     */
+    public int etsiId(int tunnusNro) {
+        for (int i = 0;i<lkm;i++) 
+            if (tunnusNro == alkiot[i].getTunnusNro()) return i;
+        return -1;
     }
 
     

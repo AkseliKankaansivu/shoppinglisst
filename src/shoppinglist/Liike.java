@@ -2,6 +2,7 @@ package shoppinglist;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Comparator;
 
 import fi.jyu.mit.ohj2.Mjonot;
 
@@ -15,6 +16,21 @@ public class Liike {
     private int tunnusNro;
     private String nimi = "";
     private static int seuraavaNro = 1;
+    
+    /**
+     * Liikkeiden vertailija luokka aakkosjärjestykseen
+     * @author aksel
+     * @version 23.4.2021
+     *
+     */
+    public static class Vertailija implements Comparator<Liike> {
+
+        @Override
+        public int compare(Liike liike1, Liike liike2) {
+            return liike1.nimi.compareTo(liike2.nimi);
+        }
+        
+    }
     
 
     

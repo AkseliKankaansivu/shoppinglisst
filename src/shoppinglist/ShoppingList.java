@@ -1,5 +1,6 @@
 package shoppinglist;
 
+
 import java.util.Collection;
 import java.util.List;
 
@@ -153,5 +154,43 @@ public class ShoppingList {
         
     }
 
+    /**
+     * poistaa valitun liikkeen
+     * @param liike poistettava liike
+     * @return poistetun liikkeen tunnusnro, 0 jos virhe
+     */
+    public int poistaLiike(Liike liike) {
+        if (liike == null) return 0;
+        int ret = liikkeet.poista(liike.getTunnusNro());
+        tuotteet.poistaLiikkeenTuotteet(liike.getTunnusNro());
+        return ret;
+    }
+
+    /**@example
+    * <pre name="test">
+    * Liike citymarket = new Liike();
+    * Liike prisma = new Liike();
+    * citymarket.rekisteroi();
+    * citymarket.tayta("Citymarket");
+    * prisma.rekisteroi();
+    * prisma.tayta("Prisma");
+    * </pre>st
+     * poistaa tuotteen
+     * @param tuote poistettava tuote
+     */
+    public void poistaTuote(Tuote tuote) {
+        if (tuote == null) return;
+        tuotteet.poista(tuote);
+    }
+
+    /**
+     * @return tuotteiden hinnat
+     */
+    public String tuotteetHinta() {
+        if (tuotteet.getLkm() == 0) return "";
+        return tuotteet.getHinnat();
+    }
+
     
+
 }

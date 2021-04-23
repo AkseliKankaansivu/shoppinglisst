@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
 
 /**
  * @author aksel
@@ -143,4 +145,41 @@ public class Tuotteet {
        }
        
    }
+
+/**
+     * poistaa valitun liikkeen
+     * @param tuote poistettavan liikkeen tunnusnro
+     */
+    public void poista(Tuote tuote) {
+        alkiot.remove(tuote);
+    }
+
+/**
+ * Poistaa liikkeen tuotteet, kun liike poistetaan
+ * @param tunnusNro liikkeen tunnusnro
+ */
+public void poistaLiikkeenTuotteet(int tunnusNro) {
+       for (Iterator<Tuote> it = alkiot.iterator(); it.hasNext();) {
+           Tuote tuote = it.next();
+           if (tuote.getLiikeID() == tunnusNro) {
+               it.remove();
+           }
+    }
+    
+}
+
+/**
+ * @return tuotteiden hinnat
+ */
+public String getHinnat() {
+    double summa = 0;
+    for (Iterator<Tuote> it = alkiot.iterator(); it.hasNext();) {
+        Tuote tuo = it.next();
+        String temp = tuo.getHinta();
+        temp = temp.replace("€", "");
+        summa += Double.parseDouble(temp);
+    }
+    return Double.toString(summa) + "0 €";
+}
+
 }

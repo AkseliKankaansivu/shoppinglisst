@@ -169,15 +169,18 @@ public void poistaLiikkeenTuotteet(int tunnusNro) {
 }
 
 /**
+ * @param id tuotteiden liike
  * @return tuotteiden hinnat
  */
-public String getHinnat() {
+public String getHinnat(int id) {
     double summa = 0;
     for (Iterator<Tuote> it = alkiot.iterator(); it.hasNext();) {
         Tuote tuo = it.next();
+        if (tuo.getLiikeID() == id) {
         String temp = tuo.getHinta();
         temp = temp.replace("€", "");
         summa += Double.parseDouble(temp);
+        }
     }
     return Double.toString(summa) + "0 €";
 }

@@ -257,5 +257,20 @@ public class Liikkeet implements Iterable<Liike>{
         return -1;
     }
 
+    /**
+     * korvaa vanhan liikkeen tietorakenteessa
+     * @param liike korvattava/lisättävä liike
+     * @throws SailoException jos virhe
+     */
+    public void korvaaTaiLisaa(Liike liike) throws SailoException {
+        int id = liike.getTunnusNro();
+        for (int i = 0; i < lkm; i++) {
+            if (alkiot[i].getTunnusNro() == id) {
+                alkiot[i] = liike;
+                return;
+            }
+        }
+    }
+
     
 }

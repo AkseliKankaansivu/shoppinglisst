@@ -23,7 +23,7 @@ public class Liike {
      * @version 23.4.2021
      *
      */
-    public static class Vertailija implements Comparator<Liike> {
+    public static class Vertailija implements Comparator<Liike>, Cloneable {
 
         @Override
         public int compare(Liike liike1, Liike liike2) {
@@ -31,8 +31,6 @@ public class Liike {
         }
         
     }
-    
-
     
     /**
      * tulostaa liikkeen tiedot
@@ -151,4 +149,12 @@ public class Liike {
     public void setNimi(String nimi) {
         this.nimi = nimi;
     }
+    /**
+    @Override
+    public Liike clone() throws CloneNotSupportedException {
+        Liike uusi;
+        uusi = (Liike) super.clone();
+        return uusi;
+    }
+    */
 }

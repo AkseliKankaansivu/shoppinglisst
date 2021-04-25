@@ -10,10 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
- fx:controller="fxShoppingList.LiikkeenLisaysController">
+<AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxShoppingList.LiikkeenLisaysController">
    <children>
-      <BorderPane stylesheets="@shoppinglist.css" prefHeight="127.0" prefWidth="200.0">
+      <BorderPane prefHeight="127.0" prefWidth="200.0" stylesheets="@shoppinglist.css">
          <center>
             <TextField fx:id="liikeNimi" promptText="Liikkeen nimi" BorderPane.alignment="CENTER">
                <BorderPane.margin>
@@ -47,7 +46,7 @@
             </GridPane>
          </bottom>
          <top>
-            <Label text="Lisää liike" BorderPane.alignment="CENTER" />
+            <Label text="Liikken tiedot" BorderPane.alignment="CENTER" />
          </top>
       </BorderPane>
    </children>

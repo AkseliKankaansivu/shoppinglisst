@@ -84,6 +84,11 @@ public class OhjelmaController implements ModalControllerInterface<String> {
     }
     
     @FXML
+    private void handleMuokkaa() {
+        muokkaa();
+    }
+    
+    @FXML
     private Label labelVirhe;
     
     @FXML private void handleHakuEhto() {
@@ -222,6 +227,18 @@ private Liike liikeKohdalla;
 
     }
     
+    private void muokkaa() {
+        if (liikeKohdalla == null) return;
+        try {
+            Liike liike = LiikkeenLisaysController.kysyLiike(null, liikeKohdalla);
+            if (liike == null) return;
+            shoppinglist.korvaaTaiLisaa(liike);
+            haeLiike(liike.getTunnusNro());     
+        } catch (SailoException e) {
+            naytaVirhe(e.getMessage());
+        }
+    }
+    
     private void uusiLiike() {
         Liike liike = new Liike();
         // ModalController.showModal(OhjelmaController.class.getResource("liikkeenlisays.fxml"), "Lisäys", null, "");
@@ -245,7 +262,8 @@ private Liike liikeKohdalla;
         List<Tuote> lista = shoppinglist.annaTuotteet(chooserLiikkeet.getSelectedObject());
         Object[] tuotelista = lista.toArray(); 
         Tuote tuote = new Tuote();
-        String hinta = shoppinglist.tuotteetHinta();
+        String hinta = "";
+        hinta = shoppinglist.tuotteetHinta(chooserLiikkeet.getSelectedObject());
         String liikeNimi = chooserLiikkeet.getSelectedObject().getNimi();
         tuote = LahetysController.laheta(null, tuote, tuotelista, liikeNimi, hinta);
         

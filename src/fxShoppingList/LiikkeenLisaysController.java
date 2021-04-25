@@ -40,7 +40,7 @@ public class LiikkeenLisaysController implements ModalControllerInterface<Liike>
     @Override
     public void setDefault(Liike oletus) {
         uusiLiike = oletus;
-        
+        naytaLiike(uusiLiike);
     }
     
     @FXML private Label labelVirhe;
@@ -84,7 +84,11 @@ public class LiikkeenLisaysController implements ModalControllerInterface<Liike>
         labelVirhe.getStyleClass().add("virhe");
     }
 
-
+ 
+    private void naytaLiike(Liike liike) {
+        if (liike == null) return;
+        liikeNimi.setText(liike.getNimi());
+    }
     
 
 }

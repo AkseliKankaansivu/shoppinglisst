@@ -66,24 +66,45 @@ public class ShoppingList {
      * #THROWS SailoException 
      * #import java.io.File;
      * 
-     *  Liikkeet liikkeet = new Liikkeet();
+     *  ShoppingList shopping = new ShoppingList();
+     *  Tuote limsa = new Tuote();
+     *  Tuote jugurtti = new Tuote();
+     *  Tuote sokeri = new Tuote();
      *  Liike liike1 = new Liike(), liike2 = new Liike();
-     *  liike1.tayta("1");
+     *  liike1.tayta("1"); 
+     *  liike1.rekisteroi();
      *  liike2.tayta("2");
+     *  liike2.rekisteroi();
+     *  jugurtti.tayta(liike1.getTunnusNro());
+     *  limsa.tayta(liike2.getTunnusNro()); 
+     *  sokeri.tayta(liike1.getTunnusNro());
      *  String hakemisto = "testiliikkeet";
      *  String tiedNimi = hakemisto+"/nimet";
      *  File ftied = new File(tiedNimi+".dat");
      *  File dir = new File(hakemisto);
      *  dir.mkdir();
      *  ftied.delete();
-     *  liikkeet.lueTied(tiedNimi); #THROWS SailoException
-     *  liikkeet.lisaa(liike1);
-     *  liikkeet.lisaa(liike2);
-     *  liikkeet.tallenna("Liikkeet");
-     *  liikkeet = new Liikkeet();            // Poistetaan vanhat luomalla uusi
-     *  liikkeet.lueTied("Liikkeet");  // johon ladataan tiedot tiedostosta.
-     *  liikkeet.lisaa(liike1);
-     *  liikkeet.tallenna("Liikkeet");
+     *  shopping.lisaa(liike1);
+     *  shopping.lisaa(liike2);
+     *  shopping.lisaa(jugurtti);
+     *  shopping.lisaa(sokeri);
+     *  shopping.lisaa(limsa);
+     *  shopping.tallenna();
+     *  shopping = new ShoppingList();            // Poistetaan vanhat luomalla uusi
+     *  shopping.lueTiedostosta();
+     *  shopping.getLiikkeet() === 2
+     *  List<Tuote> loytyneet = shopping.annaTuotteet(liike1);
+     *  Iterator<Tuote> ih = loytyneet.iterator();
+     *  ih.hasNext() === true;
+     *  ih.next();
+     *  ih.hasNext() === true;
+     *  ih.next();
+     *  ih.hasNext() === false;
+     *  loytyneet = shopping.annaTuotteet(liike2);
+     *  ih = loytyneet.iterator();
+     *  ih.hasNext() === true;
+     *  ih.next();
+     *  ih.hasNext() === false;
      * </pre>
      */
      
